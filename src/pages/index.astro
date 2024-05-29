@@ -1,0 +1,54 @@
+---
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>My portfolio</title>
+  </head>
+
+  <body>
+    <nav class="bg-black text-white">
+      <div class="nav-bar flex justify-around align-middle">
+        <div class="links flex justify-around text-slate-400 text-2xl">
+          <a href="" class="border border-white rounded-lg w-24">Home</a>
+          <a href="">About Me</a>
+          <a href="">Experience</a>
+          <a href="">Education</a>
+          <a href="">Projects</a>
+        </div>
+      </div>
+    </nav>
+    <div class="hero flex">
+      <div class="side-bar"></div>
+      <div class="main">
+        <h1 class="text-base md:text-4xl">
+          <span class="text_1">Fancy heading on your static web page</span>
+          <span class="text_2">What?? How does it change without JavaScript?</span>
+        </h1>
+      </div>
+    </div>
+
+    <script is:inline>
+      setInterval(() => {
+        if (document.title !== "Hey I am Full Stack Developer") {
+          document.title = "Hey I am Full Stack Developer";
+        } else document.title = "My Portfolio";
+      }, 2000);
+    </script>
+  </body>
+</html>
