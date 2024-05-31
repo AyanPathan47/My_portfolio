@@ -59,93 +59,343 @@
   }   */
 
 
-  /* Your custom CSS */
+/* Your custom CSS */
 
-  body {
-    background-color: black;
-    color: white;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+body {
+  background-color: black;
+  color: white;
+}
+
+.text_1 {
+  animation: text1;
+}
+
+.text_2 {
+  animation: text2;
+}
+
+.text_1,
+.text_2 {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  animation-duration: 20s;
+  animation-timing-function: steps(25, end);
+  animation-iteration-count: infinite;
+}
+
+.text_1::after,
+.text_2::after {
+  content: "|";
+  position: absolute;
+  right: 0;
+  animation: caret infinite;
+  animation-duration: 1s;
+  animation-timing-function: steps(1, end);
+}
+
+@keyframes text2 {
+
+  0%,
+  50%,
+  100% {
+    width: 0;
   }
-  
+
+  60%,
+  90% {
+    width: 21.2em;
+  }
+}
+
+@keyframes text1 {
+
+  0%,
+  50%,
+  100% {
+    width: 0;
+  }
+
+  10%,
+  40% {
+    width: 18em;
+  }
+}
+
+@keyframes caret {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
   .text_1 {
-    animation: text1;
+    animation-duration: 30s;
+    /* Adjust animation duration for small screens */
   }
 
   .text_2 {
-    animation: text2;
-  }
-
-  .text_1, .text_2 {
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
-    position: relative;
-    animation-duration: 20s;
-    animation-timing-function: steps(25, end);
-    animation-iteration-count: infinite;
-  }
-
-  .text_1::after, .text_2::after {
-    content: "|";
-    position: absolute;
-    right: 0;
-    animation: caret infinite;
-    animation-duration: 1s;
-    animation-timing-function: steps(1, end);
+    animation-duration: 30s;
+    /* Adjust animation duration for small screens */
   }
 
   @keyframes text2 {
-    0%, 50%, 100% {
+
+    0%,
+    50%,
+    100% {
       width: 0;
     }
-    
-    60%, 90% {
-      width: 21.2em;
+
+    60%,
+    90% {
+      width: 18em;
+      /* Adjust width for small screens */
     }
   }
 
   @keyframes text1 {
-    0%, 50%, 100% {
+
+    0%,
+    50%,
+    100% {
       width: 0;
     }
-    10%, 40% {
-      width: 18em;
+
+    10%,
+    40% {
+      width: 15em;
+      /* Adjust width for small screens */
     }
   }
+}
 
-  @keyframes caret {
-    0%, 100% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
+.btn-toggle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  padding: 6px;  /* Reduced padding */
+  background-color: transparent;
+  border-color: transparent;
+  outline: none;
+  transform: translateZ(0);
+  transition: transform 0.1s ease-out;
+}
+
+.btn-toggle:active {
+  transform: translateY(2px);  /* Adjusted for new size */
+}
+
+.btn-toggle:focus .line:after {
+  background-color: black;
+}
+
+.line {
+  display: block;
+  width: 30px;  /* Reduced width */
+  padding: 2px;  /* Reduced padding */
+}
+
+.line:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;  /* Reduced height */
+  background-color: black;
+  border-radius: 2px;
+  transform: translateZ(0) rotate(0);
+  transition: background-color 0.2s ease-out;
+}
+
+.open .line:nth-child(1) {
+  -webkit-animation: jump-1 0.9s forwards ease;
+          animation: jump-1 0.9s forwards ease;
+}
+
+.open .line:nth-child(1):after {
+  -webkit-animation: line-1 0.9s forwards ease-in-out;
+          animation: line-1 0.9s forwards ease-in-out;
+}
+
+.open .line:nth-child(2) {
+  -webkit-animation: jump-2 0.9s forwards ease;
+          animation: jump-2 0.9s forwards ease;
+}
+
+.open .line:nth-child(2):after {
+  -webkit-animation: line-2 0.9s forwards ease-in-out;
+          animation: line-2 0.9s forwards ease-in-out;
+}
+
+.close .line:nth-child(1) {
+  animation: jump-1 0.9s reverse ease;
+}
+
+.close .line:nth-child(1):after {
+  animation: line-1 0.9s reverse ease-in-out;
+}
+
+.close .line:nth-child(2) {
+  animation: jump-2 0.9s reverse ease;
+}
+
+.close .line:nth-child(2):after {
+  animation: line-2 0.9s reverse ease-in-out;
+}
+
+.open .line:nth-child(3), .close .line:nth-child(3) {
+  -webkit-animation: jump-3 0.9s forwards ease-out;
+          animation: jump-3 0.9s forwards ease-out;
+}
+
+@-webkit-keyframes line-1 {
+  10% {
+    transform: translateZ(0) rotate(0);
   }
-
-  @media (max-width: 640px) {
-    .text_1 {
-      animation-duration: 30s; /* Adjust animation duration for small screens */
-    }
-
-    .text_2 {
-      animation-duration: 30s; /* Adjust animation duration for small screens */
-    }
-
-    @keyframes text2 {
-      0%, 50%, 100% {
-        width: 0;
-      }
-
-      60%, 90% {
-        width: 18em; /* Adjust width for small screens */
-      }
-    }
-
-    @keyframes text1 {
-      0%, 50%, 100% {
-        width: 0;
-      }
-      10%, 40% {
-        width: 15em; /* Adjust width for small screens */
-      }
-    }
+  80% {
+    transform: translateZ(0) rotate(395deg);
   }
+  90%, 100% {
+    transform: translateZ(0) rotate(405deg);
+  }
+}
+
+@keyframes line-1 {
+  10% {
+    transform: translateZ(0) rotate(0);
+  }
+  80% {
+    transform: translateZ(0) rotate(395deg);
+  }
+  90%, 100% {
+    transform: translateZ(0) rotate(405deg);
+  }
+}
+
+@-webkit-keyframes line-2 {
+  10% {
+    transform: translateZ(0) rotate(0);
+  }
+  20% {
+    transform: translateZ(0) rotate(10deg);
+  }
+  90%, 100% {
+    transform: translateZ(0) rotate(-405deg);
+  }
+}
+
+@keyframes line-2 {
+  10% {
+    transform: translateZ(0) rotate(0);
+  }
+  20% {
+    transform: translateZ(0) rotate(10deg);
+  }
+  90%, 100% {
+    transform: translateZ(0) rotate(-405deg);
+  }
+}
+
+@-webkit-keyframes jump-1 {
+  10% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-45px);  /* Adjusted for new size */
+  }
+  90%, 100% {
+    transform: translateY(-3.75px);  /* Adjusted for new size */
+  }
+}
+
+@keyframes jump-1 {
+  10% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-45px);  /* Adjusted for new size */
+  }
+  90%, 100% {
+    transform: translateY(-3.75px);  /* Adjusted for new size */
+  }
+}
+
+@-webkit-keyframes jump-2 {
+  10% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-37.5px);  /* Adjusted for new size */
+  }
+  85%, 100% {
+    transform: translateY(-11.25px);  /* Adjusted for new size */
+  }
+}
+
+@keyframes jump-2 {
+  10% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-37.5px);  /* Adjusted for new size */
+  }
+  85%, 100% {
+    transform: translateY(-11.25px);  /* Adjusted for new size */
+  }
+}
+
+@-webkit-keyframes jump-3 {
+  10% {
+    transform: translateY(-3.75px) rotate(15deg);  /* Adjusted for new size */
+  }
+  30% {
+    transform: translateY(-15px) rotate(-10deg);  /* Adjusted for new size */
+  }
+  50% {
+    transform: translateY(3.75px) rotate(5deg);  /* Adjusted for new size */
+  }
+  80% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes jump-3 {
+  10% {
+    transform: translateY(-3.75px) rotate(15deg);  /* Adjusted for new size */
+  }
+  30% {
+    transform: translateY(-15px) rotate(-10deg);  /* Adjusted for new size */
+  }
+  50% {
+    transform: translateY(3.75px) rotate(5deg);  /* Adjusted for new size */
+  }
+  80% {
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes glow {
+  50% {
+    box-shadow: rgba(131, 131, 131, 0.4) 0 0 2px 2px;
+  }
+}
+
+@keyframes glow {
+  50% {
+    box-shadow: rgba(131, 131, 131, 0.4) 0 0 2px 2px;
+  }
+}

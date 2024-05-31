@@ -15,28 +15,78 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>My portfolio</title>
   </head>
 
   <body>
-    <nav class="bg-black text-white">
-      <div class="nav-bar flex justify-around align-middle">
-        <div class="links flex justify-around text-slate-400 text-2xl">
-          <a href="" class="border border-white rounded-lg w-24">Home</a>
-          <a href="">About Me</a>
-          <a href="">Experience</a>
-          <a href="">Education</a>
-          <a href="">Projects</a>
-        </div>
+    <nav class="bg-black text-white hidden md:block">
+      <div
+        class="links flex justify-evenly items-center text-slate-400 text-sm md:text-xl font-normal ms-64 mt-8"
+        style="font-family: Poppins, sans-serif;"
+      >
+        <a href="" class="border border-white rounded-xl px-2 py-1 text-white"
+          >Home</a
+        >
+        <a href="">About Me</a>
+        <a href="">Experience</a>
+        <a href="">Education</a>
+        <a href="">Projects</a>
+        <a href=""
+          ><button class="text-black bg-violet-200 rounded-xl p-2"
+            >Contact Me
+          </button></a
+        >
       </div>
     </nav>
-    <div class="hero flex">
-      <div class="side-bar"></div>
-      <div class="main">
-        <h1 class="text-base md:text-4xl">
+
+    <!-- mobile menu -->
+
+    <div
+      class="nav-bar block w-full h-14 bg-white items-center fixed top-0 md:hidden"
+    >
+      <button class="btn-toggle float-right mt-4 mr-2" id="menu-toggle">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </button>
+    </div>
+
+    <div
+      class="mobile-menu bg-white w-3/5 h-screen text-xl list-none text-center leading-10 fixed right-0 hidden z-50"
+      id="mobile-menu"
+    >
+      <div class=" z-50">
+        <hr /><li>
+          <a href="" class="text-black hover:text-slate-600"><b>Home</b></a>
+        </li><hr />
+        <li>
+          <a href="" class="text-black hover:text-slate-600"><b>About Me</b></a>
+        </li><hr />
+        <li>
+          <a href="" class="text-black hover:text-slate-600"><b>Experience</b></a>
+        </li><hr />
+        <li>
+          <a href="" class="text-black hover:text-slate-600"><b>Education</b></a>
+        </li><hr />
+        <li>
+          <a href="" class="text-black hover:text-slate-600"><b>Projects</b></a>
+        </li><hr />
+        <li>
+          <a href="" class="text-black hover:text-slate-600"
+            ><button><b>Contact Me </b></button></a
+          >
+        </li><hr />
+      </div>
+    </div>
+
+    <div class="hero flex mt-14">
+      <div class="side-bar w-1/5 hidden md:block">
+      </div>
+      <div class="main w-4/5">
+        <h1 class="text-base md:text-4xl font-mono">
           <span class="text_1">Fancy heading on your static web page</span>
           <span class="text_2">What?? How does it change without JavaScript?</span>
         </h1>
@@ -49,6 +99,34 @@
           document.title = "Hey I am Full Stack Developer";
         } else document.title = "My Portfolio";
       }, 2000);
+
+      const btn = document.getElementById("menu-toggle");
+      const mobileMenu = document.querySelector("#mobile-menu");
+      const lines = btn.querySelectorAll(".line");
+      const cls = { open: "open", close: "close" };
+      let btnClass = cls.open;
+
+      btn.addEventListener("click", () => {
+        if (btn.classList.contains(cls.open)) {
+          btn.classList.remove(btnClass);
+          btnClass = cls.close;
+        } else if (btn.classList.contains(cls.close)) {
+          btn.classList.remove(btnClass);
+          btnClass = cls.open;
+        }
+
+        void btn.offsetWidth;
+        btn.classList.add(btnClass);
+      });
+
+      btn.addEventListener("click",()=>{
+        if (mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.remove("hidden");
+        }else {
+          mobileMenu.classList.add("hidden");
+        }
+      })
+
     </script>
   </body>
 </html>
