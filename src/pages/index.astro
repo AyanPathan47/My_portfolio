@@ -22,20 +22,20 @@
   </head>
 
   <body>
-    <nav class="bg-black text-white hidden md:block">
+    <nav class="hidden md:block">
       <div
         class="links flex justify-evenly items-center text-slate-400 text-sm md:text-xl font-normal ms-64 mt-8"
         style="font-family: Poppins, sans-serif;"
       >
-        <a href="" class="border border-white rounded-xl px-2 py-1 text-white"
+        <a href="" class="border border-white rounded-xl px-2 py-1 text-white hover:font-semibold"
           >Home</a
         >
-        <a href="">About Me</a>
-        <a href="">Experience</a>
-        <a href="">Education</a>
-        <a href="">Projects</a>
-        <a href=""
-          ><button class="text-black bg-violet-200 rounded-xl p-2"
+        <a href="" class="hover:text-white">About Me</a>
+        <a href="" class="hover:text-white">Experience</a>
+        <a href="" class="hover:text-white">Education</a>
+        <a href="" class="hover:text-white">Projects</a>
+        <a href="" class=""
+          ><button class="text-black bg-red-50 rounded-xl p-2 " 
             >Contact Me
           </button></a
         >
@@ -47,6 +47,7 @@
     <div
       class="nav-bar block w-full h-14 bg-white items-center fixed top-0 md:hidden"
     >
+      <img src="/public/3d-design.png" class="w-8 h-8 mt-3 ml-2 float-left">
       <button class="btn-toggle float-right mt-4 mr-2" id="menu-toggle">
         <div class="line"></div>
         <div class="line"></div>
@@ -58,7 +59,7 @@
       class="mobile-menu bg-white w-3/5 h-screen text-xl list-none text-center leading-10 fixed right-0 hidden z-50"
       id="mobile-menu"
     >
-      <div class=" z-50">
+      <div class="z-50">
         <hr /><li>
           <a href="" class="text-black hover:text-slate-600"><b>Home</b></a>
         </li><hr />
@@ -66,10 +67,13 @@
           <a href="" class="text-black hover:text-slate-600"><b>About Me</b></a>
         </li><hr />
         <li>
-          <a href="" class="text-black hover:text-slate-600"><b>Experience</b></a>
+          <a href="" class="text-black hover:text-slate-600"
+            ><b>Experience</b></a
+          >
         </li><hr />
         <li>
-          <a href="" class="text-black hover:text-slate-600"><b>Education</b></a>
+          <a href="" class="text-black hover:text-slate-600"><b>Education</b></a
+          >
         </li><hr />
         <li>
           <a href="" class="text-black hover:text-slate-600"><b>Projects</b></a>
@@ -82,16 +86,23 @@
       </div>
     </div>
 
-    <div class="hero flex mt-14">
-      <div class="side-bar w-1/5 hidden md:block">
+    <main>
+      <div class="hero flex mt-14 ml-4 md:mx-12">
+        <div class="side-bar w-1/4 hidden md:block rounded-lg h-full bg-neutral-900 p-6 border border-neutral-800">
+          <h1 class="text-center text-4xl " style="font-family: 'Poppins','sans-serif';">Ayan<br> Pathan</h1>
+          <div class="bg-red-200 h-96 mt-4 img"  style="border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;">
+          </div>
+        </div>
+        <div class="main w-3/4 md:mt-64 text-red-100 md:ml-12">
+          <p id="greeting" class="font-mono text-2xl"></p>
+          <p class="text-base md:text-5xl font-mono">I'm Ayan Pathan</p>     
+          <h1 class="text-base md:text-5xl font-mono">
+            <span class="text_1">A Passionate Web Developer.</span>
+            <span class="text_2 -ml-6">Full Stack Developer.</span>
+          </h1>
+        </div>
       </div>
-      <div class="main w-4/5">
-        <h1 class="text-base md:text-4xl font-mono">
-          <span class="text_1">Fancy heading on your static web page</span>
-          <span class="text_2">What?? How does it change without JavaScript?</span>
-        </h1>
-      </div>
-    </div>
+    </main>
 
     <script is:inline>
       setInterval(() => {
@@ -119,14 +130,36 @@
         btn.classList.add(btnClass);
       });
 
-      btn.addEventListener("click",()=>{
+      btn.addEventListener("click", () => {
         if (mobileMenu.classList.contains("hidden")) {
-          mobileMenu.classList.remove("hidden");
-        }else {
+          setTimeout(() => {
+            mobileMenu.classList.remove("hidden");
+          }, 700);
+        } else {
           mobileMenu.classList.add("hidden");
         }
-      })
+      });
 
+      
+
+        function getGreeting() {
+            const now = new Date();
+            const hour = now.getHours();
+            let greeting;
+
+            if (hour < 12) {
+                greeting = "Good Morning";
+            } else if (hour < 18) {
+                greeting = "Good Afternoon";
+            } else {
+                greeting = "Good Evening";
+            }
+
+            return greeting;
+        }
+
+        document.getElementById('greeting').innerText = getGreeting();
     </script>
   </body>
 </html>
+<!-- // <h1><span ></span>, welcome to our website!</h1> -->
